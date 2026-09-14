@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feladatlap: Bemutatkozó weboldal | HTML–CSS ismétlés</title>
+<style>
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:#ffffff; color:#2b2823;
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16.5px; line-height:1.7;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 80px;}
+  .hero{background:linear-gradient(135deg,#fff4e6 0%,#ffe8cc 100%); border-bottom:3px solid #e8a33d; padding:34px 22px 30px; margin-bottom:10px;}
+  .hero .inner{max-width:920px; margin:0 auto;}
+  .hero .kicker{text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; color:#a15c11; font-weight:700; margin:0 0 8px;}
+  .hero h1{margin:0 0 10px; font-size:2rem; line-height:1.2; color:#5a3608;}
+  .hero p{margin:8px 0 0; max-width:720px; color:#6b4a24;}
+  h2.blokk{font-size:1.35rem; margin:34px 0 12px; padding-bottom:8px; border-bottom:2px solid #e6e0d6; color:#3a3630;}
+  .lepes{border:1px solid #e3ded5; border-radius:14px; padding:20px 24px 18px; margin:22px 0; background:#fffdfa; page-break-inside:avoid;}
+  .lepes > h3{margin:0 0 12px; font-size:1.15rem; color:#2f5952;}
+  .lepes > h3 .num{display:inline-block; background:#e8a33d; color:#3a2508; border-radius:8px; padding:1px 11px; font-size:.95rem; font-weight:800; margin-right:12px;}
+  .cim{display:block; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; font-weight:800; margin:16px 0 4px; color:#8a8577;}
+  p{margin:8px 0;}
+  ul,ol{margin:8px 0; padding-left:24px;}
+  li{margin:5px 0;}
+  code{background:#f3f0ea; color:#9a4a12; padding:2px 6px; border-radius:5px; font-family:"Consolas","Courier New",monospace; font-size:.9em;}
+  pre{background:#f8f7f4; border:1px solid #e6e0d6; border-left:4px solid #0f766e; border-radius:9px; padding:14px 16px; overflow-x:auto; margin:10px 0; font-family:"Consolas","Courier New",monospace; font-size:.86rem; line-height:1.55; white-space:pre; color:#2b2823;}
+  pre .tag{color:#0f766e;} pre .att{color:#b45309;} pre .str{color:#1d4ed8;}
+  pre .com{color:#9a958a; font-style:italic;} pre .sel{color:#0f766e;} pre .prop{color:#1d4ed8;} pre .val{color:#b45309;}
+  pre .hiany{background:#fde68a; color:#78350f; border-radius:4px; padding:0 4px;}
+  .box{border-radius:11px; padding:13px 17px; margin:12px 0; border-left:4px solid; font-size:.96rem;}
+  .box p:first-child{margin-top:0;} .box p:last-child{margin-bottom:0;} .box ul{margin-bottom:0;}
+  .box .lbl{display:block; font-weight:800; font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; margin-bottom:5px;}
+  .kerdes{background:#fff7ed; border-color:#f59e0b;} .kerdes .lbl{color:#b45309;}
+  .valaszd{background:#f6f3ff; border-color:#7c3aed;} .valaszd .lbl{color:#6d28d9;}
+  .tipp{background:#f0fdf4; border-color:#16a34a;} .tipp .lbl{color:#15803d;}
+  .emmet{background:#eff6ff; border-color:#2563eb;} .emmet .lbl{color:#1d4ed8;}
+  .rov{background:#1e3a5f; color:#e0f2fe; padding:2px 8px; border-radius:5px; font-family:"Consolas","Courier New",monospace; font-size:.88em; font-weight:600; white-space:nowrap;}
+  kbd{background:#f6f4f0; border:1px solid #d8d2c6; border-bottom-width:3px; border-radius:5px; padding:1px 7px; font-family:"Consolas",monospace; font-size:.84em;}
+  .figyelem{background:#fef2f2; border-color:#dc2626;} .figyelem .lbl{color:#b91c1c;}
+  table{border-collapse:collapse; width:100%; margin:12px 0; font-size:.9rem;}
+  th,td{border:1px solid #e3ded5; padding:7px 11px; text-align:left; vertical-align:top;}
+  th{background:#f6f4f0; color:#5a4a2e;}
+  .sw{display:inline-block; width:15px; height:15px; border-radius:4px; border:1px solid #cfc8bb; vertical-align:-2px; margin-right:5px;}
+  .check{list-style:none; padding-left:2px;}
+  .check li{margin:7px 0;}
+  .check li::before{content:"\2610"; font-size:1.15em; margin-right:9px; color:#8a8577;}
+  .lablec{margin-top:50px; padding-top:16px; border-top:1px solid #e6e0d6; color:#8a8577; font-size:.88rem; text-align:center;}
+  a{color:#0f766e;}
+  @media print{
+    body{font-size:11.5pt;} .hero{background:#fff4e6;} .wrap{padding-bottom:0;}
+    .lepes,.box,pre,table{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="inner">
+    <p class="kicker">Webprogramozás &middot; HTML &amp; CSS ismétlés &middot; gyakorlófeladat</p>
+    <h1>Készítsd el a saját bemutatkozó oldaladat!</h1>
+    <p>Ebben a feladatban egyoldalas weblapot építesz <strong>magadról</strong>: tiszta HTML-ből és külső CSS-fájlból, JavaScript nélkül. Az oldal <strong>felépítését</strong> végig megadjuk &ndash; a <strong>szöveget</strong>, a <strong>színeket</strong> és a <strong>betűtípust</strong> viszont neked kell kitalálnod.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<h2 class="blokk">Mielőtt nekikezdesz</h2>
+
+<p><strong>A minta:</strong> nyisd meg a <a href="bemutatkozas/index.html">bemutatkozas/index.html</a> fájlt böngészőben. Ez egy kitalált szereplő, <em>Kovács Anna</em> oldala. Ilyen <strong>felépítésű</strong> oldalt fogsz készíteni &ndash; de a te szövegeddel és a te színeiddel. A szöveget ne másold ki belőle!</p>
+
+<table>
+  <tr><th>Amit megadunk</th><th>Amit neked kell eldöntened</th></tr>
+  <tr>
+    <td>Az oldal felépítése: milyen dobozok, milyen sorrendben<br>A használandó HTML-elemek és attribútumok<br>A beállítandó CSS-tulajdonságok</td>
+    <td>A teljes szöveg &ndash; magadról írsz<br>A színek (adunk 4 kész palettát, ha nem akarsz keverni)<br>A betűtípus és a betűméretek<br>A képek</td>
+  </tr>
+</table>
+
+<div class="box figyelem">
+  <span class="lbl">Adatvédelem &ndash; ezt vedd komolyan</span>
+  <p>Ez gyakorlófeladat, de szokjuk meg a jó gyakorlatot: <strong>ne írj az oldalra</strong> valós telefonszámot, pontos lakcímet, születési dátumot vagy magánjellegű e-mail-címet. Használj iskolai e-mail-címet, vagy találj ki egyet (pl. <code>kissbence@example.com</code>). Csak olyat írj magadról, amit egy osztálytárs vagy egy tanár nyugodtan elolvashat.</p>
+</div>
+
+<div class="box tipp">
+  <span class="lbl">Így haladj</span>
+  <p>Dolgozz <strong>lépésenként</strong>. Minden lépés után mentsd el <strong>mindkét fájlt</strong> (<kbd>Ctrl</kbd>+<kbd>S</kbd>), és frissítsd a böngészőt (<kbd>F5</kbd>). Így ha valami elromlik, tudni fogod, melyik sortól. Ne írd meg egyszerre az egészet, mert a hibát nem fogod megtalálni!</p>
+  <p>A gépelés nagy részét megspórolhatod: a következő fejezet (<strong>Gyorsítás: Emmet-rövidítések</strong>) végigveszi, hogyan ugrik ki egy-két karakterből a kész kód. Olvasd el, mielőtt az 1. lépésbe kezdesz &ndash; a lépéseknél aztán mindig ott lesz a kék dobozban az adott részhez tartozó rövidítés.</p>
+</div>
+
+<h2 class="blokk">Gyorsítás: Emmet-rövidítések</h2>
+
+<p>Ezt a feladatot végig lehet gépelni kézzel &ndash; de fölösleges. A szerkesztődben ott az <strong>Emmet</strong>: begépelsz egy rövidítést, megnyomod a <kbd>Tab</kbd> billentyűt, és kiugrik belőle a kész HTML- vagy CSS-kód. <strong>A cél nem a gépelés, hanem hogy értsd, mit írsz</strong> &ndash; ezért minden rövidítés mellett ott van, mit kapsz tőle. Nézd meg mindig, hogy azt kaptad-e, amit vártál!</p>
+
+<div class="box figyelem">
+  <span class="lbl">Két szabály az Emmethez</span>
+  <p><strong>1.</strong> A rövidítés <strong>egy szó legyen, szóköz nélkül</strong> &ndash; ha szóközt ütsz benne, nem fog működni. <strong>2.</strong> A fájl legyen elmentve <code>.html</code> vagy <code>.css</code> kiterjesztéssel, különben a szerkesztő nem tudja, milyen nyelvet írsz, és nem kínálja fel a bővítést.</p>
+</div>
+
+<div class="lepes">
+  <h3>HTML-rövidítések &ndash; a szerkezet</h3>
+  <table>
+    <tr><th>Gépeld be, majd <kbd>Tab</kbd></th><th>Ezt kapod</th></tr>
+    <tr><td><span class="rov">!</span></td><td>A <strong>teljes HTML5 váz</strong>: doctype, html, head, meta charset, viewport, title, body. (A <code>&lt;link&gt;</code> sort neked kell hozzáírnod.)</td></tr>
+    <tr><td><span class="rov">div</span></td><td><code>&lt;div&gt;&lt;/div&gt;</code> &ndash; bármelyik elem neve működik így</td></tr>
+    <tr><td><span class="rov">.doboz</span></td><td><code>&lt;div class="doboz"&gt;&lt;/div&gt;</code> &ndash; ha nem írsz elemnevet, <code>div</code> lesz belőle</td></tr>
+    <tr><td><span class="rov">p.halvany</span></td><td><code>&lt;p class="halvany"&gt;&lt;/p&gt;</code></td></tr>
+    <tr><td><span class="rov">.doboz#rolam</span></td><td><code>&lt;div class="doboz" id="rolam"&gt;&lt;/div&gt;</code></td></tr>
+    <tr><td><span class="rov">.doboz.kiemelt</span></td><td><code>&lt;div class="doboz kiemelt"&gt;&lt;/div&gt;</code> &ndash; két osztály</td></tr>
+    <tr><td><span class="rov">img</span></td><td><code>&lt;img src="" alt=""&gt;</code> &ndash; a két attribútum magától jön, csak kitöltöd</td></tr>
+    <tr><td><span class="rov">a[href=#rolam]</span></td><td><code>&lt;a href="#rolam"&gt;&lt;/a&gt;</code> &ndash; szögletes zárójelben az attribútumok</td></tr>
+  </table>
+
+  <span class="cim">A négy összekötő jel &ndash; ettől lesz igazán hasznos</span>
+  <table>
+    <tr><th>Jel</th><th>Mit jelent</th><th>Példa</th><th>Eredmény</th></tr>
+    <tr><td><span class="rov">&gt;</span></td><td>gyereke lesz (bele)</td><td><span class="rov">ul&gt;li</span></td><td>az <code>li</code> az <code>ul</code>-on <em>belül</em></td></tr>
+    <tr><td><span class="rov">+</span></td><td>testvére lesz (mellé)</td><td><span class="rov">h2+p</span></td><td>a <code>p</code> a <code>h2</code> <em>után</em>, azonos szinten</td></tr>
+    <tr><td><span class="rov">*</span></td><td>ennyiszer</td><td><span class="rov">li*5</span></td><td>5 darab <code>&lt;li&gt;</code></td></tr>
+    <tr><td><span class="rov">{}</span></td><td>szöveg az elembe</td><td><span class="rov">h1{Kiss Bence}</span></td><td><code>&lt;h1&gt;Kiss Bence&lt;/h1&gt;</code></td></tr>
+    <tr><td><span class="rov">$</span></td><td>sorszám (a <code>*</code>-gal együtt)</td><td><span class="rov">li*3&gt;h3{Hobbi $}</span></td><td>Hobbi 1, Hobbi 2, Hobbi 3</td></tr>
+  </table>
+
+  <span class="cim">Nézd meg, mit tud ez a három karakter</span>
+  <p>Ezt gépeled be (egyetlen sor, szóköz nélkül):</p>
+<pre>.kartyak&gt;.kartya*3&gt;img+h3{Hobbi $}+p</pre>
+  <p><kbd>Tab</kbd> &ndash; és ezt kapod:</p>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"kartyak"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"kartya"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="att">src</span>=<span class="str">""</span> <span class="att">alt</span>=<span class="str">""</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>Hobbi 1<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;&lt;/p&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="com">&lt;!-- ...és még kétszer ugyanez, Hobbi 2 és Hobbi 3 címmel --&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <div class="box tipp">
+    <span class="lbl">Ugrálás a kitöltendő helyek között</span>
+    <p>A bővítés után a kurzor az első kitöltendő ponton áll. A <strong>következőre</strong> a <kbd>Tab</kbd> billentyűvel ugorhatsz &ndash; így egérhez nyúlás nélkül végigtöltöd az egészet.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3>Kitöltőszöveg: <span class="rov">lorem</span></h3>
+  <p>Amíg a végleges szövegeden gondolkodsz, kérhetsz <strong>ideiglenes kitöltőszöveget</strong>. Így már látod az elrendezést, pedig még egy mondatot sem írtál.</p>
+  <table>
+    <tr><th>Rövidítés</th><th>Mit ad</th></tr>
+    <tr><td><span class="rov">lorem</span></td><td>Kb. 30 szónyi latin kitöltőszöveg</td></tr>
+    <tr><td><span class="rov">lorem20</span></td><td>Pontosan 20 szó</td></tr>
+    <tr><td><span class="rov">p&gt;lorem40</span></td><td>Egy bekezdés 40 szóval</td></tr>
+    <tr><td><span class="rov">p*3&gt;lorem25</span></td><td>Három bekezdés, egyenként 25 szóval &ndash; pont a „Rólam" dobozhoz</td></tr>
+    <tr><td><span class="rov">ul.lista&gt;li*5&gt;lorem6</span></td><td>Ötelemű lista, minden elemben 6 szó</td></tr>
+    <tr><td><span class="rov">.kartya&gt;h3{Cím}+p&gt;lorem18</span></td><td>Kártya rövid szöveggel</td></tr>
+  </table>
+  <div class="box figyelem">
+    <span class="lbl">A lorem csak állvány &ndash; nem maradhat benn!</span>
+    <p>A kitöltőszöveg arra való, hogy <em>lásd a formát</em>, amíg dolgozol. A beadott oldalon <strong>egyetlen latin szó sem maradhat</strong>: mindet cseréld le a saját mondataidra. Ha bizonytalan vagy, keress rá a fájlban a <code>Lorem</code> szóra (<kbd>Ctrl</kbd>+<kbd>F</kbd>) &ndash; nem szabad találatot adnia.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3>CSS-rövidítések</h3>
+  <p>A <code>style.css</code>-ben is működik: a tulajdonságnév első betűi + a szám, és <kbd>Tab</kbd>. A mértékegység magától <code>px</code> lesz, a <code>p</code> betű a végén pedig <code>%</code>-ot jelent.</p>
+  <table>
+    <tr><th>Gépeld</th><th>Ezt kapod</th><th>Gépeld</th><th>Ezt kapod</th></tr>
+    <tr><td><span class="rov">bxz</span></td><td><code>box-sizing: border-box;</code></td><td><span class="rov">ta:c</span></td><td><code>text-align: center;</code></td></tr>
+    <tr><td><span class="rov">m0</span></td><td><code>margin: 0;</code></td><td><span class="rov">td:n</span></td><td><code>text-decoration: none;</code></td></tr>
+    <tr><td><span class="rov">mb26</span></td><td><code>margin-bottom: 26px;</code></td><td><span class="rov">d:ib</span></td><td><code>display: inline-block;</code></td></tr>
+    <tr><td><span class="rov">p24-28</span></td><td><code>padding: 24px 28px;</code></td><td><span class="rov">fs:i</span></td><td><code>font-style: italic;</code></td></tr>
+    <tr><td><span class="rov">w100p</span></td><td><code>width: 100%;</code></td><td><span class="rov">bd1-s</span></td><td><code>border: 1px solid ...;</code></td></tr>
+    <tr><td><span class="rov">mw900</span></td><td><code>max-width: 900px;</code></td><td><span class="rov">bdrs10</span></td><td><code>border-radius: 10px;</code></td></tr>
+    <tr><td><span class="rov">fz17</span></td><td><code>font-size: 17px;</code></td><td><span class="rov">bgc</span></td><td><code>background-color: #fff;</code></td></tr>
+    <tr><td><span class="rov">lh1.7</span></td><td><code>line-height: 1.7;</code></td><td><span class="rov">bxsh</span></td><td><code>box-shadow: ...;</code> (vázlat)</td></tr>
+  </table>
+  <p>A színt rögtön hozzáírhatod: a <span class="rov">bgc#4a7c72</span> már kész értékkel adja vissza a sort.</p>
+  <div class="box tipp">
+    <span class="lbl">Ha nem pont ezt kapod</span>
+    <p>Nem baj &ndash; az érték mindig átírható. A rövidítés a gépelést spórolja meg, nem a gondolkodást. Ha egy rövidítés nem ugrik be, írd ki kézzel, és menj tovább.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3>Egyéb gyorsbillentyűk</h3>
+  <table>
+    <tr><th>Billentyű</th><th>Mit csinál</th><th>Mikor jön jól ebben a feladatban</th></tr>
+    <tr><td><kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>&darr;</kbd></td><td>A sor (vagy a kijelölés) másolása egy sorral lejjebb</td><td>A 2. és 3. hobbi-kártya elkészítése: jelöld ki az elsőt, nyomd meg kétszer.</td></tr>
+    <tr><td><kbd>Alt</kbd>+<kbd>&uarr;</kbd> / <kbd>&darr;</kbd></td><td>A sor mozgatása fel-le</td><td>Ha rossz sorrendbe került egy CSS-tulajdonság vagy egy listaelem.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>A következő ugyanolyan szó kijelölése (többször is)</td><td>Egy színkód átírása az összes előfordulásán egyszerre.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>/</kbd></td><td>Megjegyzéssé alakítás oda-vissza</td><td>Egy CSS-szabály ideiglenes kikapcsolása hibakereséskor.</td></tr>
+    <tr><td><kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd></td><td>A kód automatikus formázása</td><td>Ha összekuszálódott a behúzás &ndash; utána rögtön látszik a hiányzó <code>&lt;/div&gt;</code>.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td>Javaslatok kérése</td><td>Ha nem jut eszedbe egy CSS-tulajdonság pontos neve.</td></tr>
+  </table>
+  <div class="box tipp">
+    <span class="lbl">Meglévő szöveg becsomagolása</span>
+    <p>Ha már be van gépelve öt sor szöveg, és mind az öt köré <code>&lt;li&gt;</code> kellene: jelöld ki őket, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, kezdd el gépelni, hogy <em>Wrap with Abbreviation</em>, majd add meg rövidítésnek: <span class="rov">ul.lista&gt;li*</span>. A csillag magától annyi elemet csinál, ahány sort kijelöltél.</p>
+  </div>
+  <div class="box figyelem">
+    <span class="lbl">Ha egy billentyűkombináció nem működik</span>
+    <p>A fenti billentyűk a Visual Studio Code alapbeállításai. Ha nálad más szerkesztő vagy más beállítás van, nézd meg a menüben a parancs mellett feltüntetett billentyűt &ndash; a parancs neve ugyanaz marad.</p>
+  </div>
+</div>
+
+<h2 class="blokk">A munka lépései</h2>
+
+<div class="lepes">
+  <h3><span class="num">1</span>Mappa és fájlok előkészítése</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Hozz létre egy mappát a saját neveddel, és benne pontosan ezt a szerkezetet:</p>
+<pre>kiss_bence_bemutatkozas/
+   index.html          <span class="com">&lt;- a weboldal szerkezete</span>
+   style.css           <span class="com">&lt;- a megjelenés (egyelőre üres fájl)</span>
+   kepek/              <span class="com">&lt;- mappa a képeknek</span>
+      profil.png
+      hobbi-1.jpg
+      hobbi-2.jpg
+      hobbi-3.jpg</pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>A kezdőoldal neve <strong>mindig</strong> <code>index.html</code> &ndash; ezt keresi a böngésző elsőként.</li>
+    <li>A fájl- és mappanevekben <strong>ne használj</strong> ékezetet, szóközt és nagybetűt. Szóköz helyett kötőjel: <code>hobbi-1.jpg</code>, ne <code>Hobbi 1.JPG</code>.</li>
+    <li>A képeket még nem kell véglegesíteni, de a <code>kepek</code> mappa legyen kész.</li>
+  </ul>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el &ndash; a profilkép</span>
+    <p>A profilképre <strong>három lehetőséged</strong> van &ndash; bármelyik elfogadható:</p>
+    <ol>
+      <li><strong>A kész rajzolt avatarok.</strong> A <code>bemutatkozas/kepek/</code> mappában két rajzolt profilkép vár, <code>profil-noi.png</code> és <code>profil-ferfi.png</code> néven. Másold át valamelyiket a saját <code>kepek</code> mappádba, és nevezd át <code>profil.png</code>-re.</li>
+      <li><strong>Saját, magadról mintázott AI-avatar</strong> &ndash; lásd a következő dobozt. Ez a legszemélyesebb megoldás, és ugyanúgy rajzstílusú marad.</li>
+      <li><strong>Saját fotó</strong>, vagy ha nem szeretnél magadról képet: fotózz le valamit, ami rád jellemző (a hangszered, a cipőd a kirándulóúton, a kedvenc bögréd).</li>
+    </ol>
+    <p>A hobbi-képekhez használhatod a minta rajzait ugyanabból a mappából, saját fotót, vagy szabadon felhasználható internetes képet &ndash; ez utóbbinál a láblécbe írd oda a forrást.</p>
+  </div>
+
+  <div class="box tipp">
+    <span class="lbl">Saját avatar AI-eszközzel &ndash; így csináld</span>
+    <p>Ha rajzolt, de <em>rád hasonlító</em> profilképet szeretnél, írd le magad szövegben egy képgeneráló AI-eszköznek, és a kapott képet tedd fel az oldaladra. A leírásban ezekre térj ki:</p>
+    <ul>
+      <li><strong>Stílus:</strong> „rajzolt, lapos illusztráció, vékony körvonalakkal" &ndash; ne fotorealisztikus legyen.</li>
+      <li><strong>Külső:</strong> hajszín és hajhossz, szemszín, szemüveg, arcszőrzet &ndash; ami rád jellemző.</li>
+      <li><strong>Ruha és háttér:</strong> pl. „zöld pulóver, egyszínű világoskék háttér".</li>
+      <li><strong>Beállítás:</strong> „szemből, vállig látszó portré, mosolyog, négyzetes kép".</li>
+    </ul>
+    <p>Példa egy ilyen leírásra &ndash; ezt írd át magadra:</p>
+<pre>Rajzolt, lapos illusztrációs stílusú profilkép egy 17 éves fiúról:
+rövid barna haj, szemüveg, sötétzöld pulóver, egyszínű világoskék
+háttér, szemből, vállig látszik, mosolyog. Négyzetes (1:1) kép.</pre>
+    <p><strong>A kész képet mentsd el a <code>kepek</code> mappádba <code>profil.png</code> néven, és méretezd át <code>300&times;300</code> pixelre</strong> &ndash; ekkora a két kész avatar is. Az átméretezéshez elég a Paint (<em>Kép &rarr; Átméretezés</em>, pixelben, a „méretarány megtartása" bepipálva) vagy bármelyik online képméretező.</p>
+    <p>Ha az AI nem négyzetes képet ad, vágd négyzetesre, mielőtt átméretezed &ndash; különben a kör alakúra vágásnál nyúlni fog az arc.</p>
+  </div>
+
+  <div class="box figyelem">
+    <span class="lbl">Az AI-képnél is figyelj erre</span>
+    <ul>
+      <li><strong>Ne tölts fel magadról fotót</strong> egy ismeretlen oldalra azért, hogy „rajzot csináljon belőle". Elég <em>szövegben</em> leírnod magad &ndash; a feladathoz ez kell.</li>
+      <li>A kép <strong>rólad</strong> szóljon, ne egy ismert emberről. Létező személy nevét ne írd bele a leírásba.</li>
+      <li>Ha AI-val készült a képed, a láblécben írd oda egy mondatban &ndash; ez korrekt, és jó szokás.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">2</span>A HTML-dokumentum váza</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Nyisd meg az <code>index.html</code>-t, és gépeld be az alábbi vázat. A <span class="hiany">sárgával</span> jelölt részt írd át magadra.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="att">lang</span>=<span class="str">"hu"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="att">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="att">name</span>=<span class="str">"viewport"</span> <span class="att">content</span>=<span class="str">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span><span class="hiany">Kiss Bence &ndash; bemutatkozás</span><span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="att">rel</span>=<span class="str">"stylesheet"</span> <span class="att">href</span>=<span class="str">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="com">&lt;!-- Ide kerül majd minden látható tartalom --&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; ezt ne gépeld ki!</span>
+    <p>Az üres <code>index.html</code>-be írj be egyetlen felkiáltójelet: <span class="rov">!</span> majd <kbd>Tab</kbd>. A fenti váz nagy része egy pillanat alatt megjelenik. Utána már csak három dolgod van:</p>
+    <ul>
+      <li>a <code>lang="en"</code> értékét írd át <code>hu</code>-ra,</li>
+      <li>a <code>&lt;title&gt;</code>-be írd a nevedet,</li>
+      <li>a <code>&lt;title&gt;</code> alá szúrd be a <code>&lt;link&gt;</code> sort &ndash; ehhez is van rövidítés: <span class="rov">link:css</span> + <kbd>Tab</kbd>, és már csak a fájlnevet kell átírnod <code>style.css</code>-re.</li>
+    </ul>
+  </div>
+  <span class="cim">Mit csinál az egyes sor?</span>
+  <table>
+    <tr><th>Sor</th><th>Miért kell</th></tr>
+    <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Jelzi, hogy HTML5 dokumentum. Enélkül a böngésző „régi módban" jeleníti meg az oldalt.</td></tr>
+    <tr><td><code>lang="hu"</code></td><td>Az oldal nyelve &ndash; a kereső és a képernyőolvasó ebből tudja, hogy magyar szöveg.</td></tr>
+    <tr><td><code>charset="UTF-8"</code></td><td>Karakterkódolás. Enélkül az <em>ő</em> és <em>ű</em> betűk helyén kacatok jelennek meg.</td></tr>
+    <tr><td><code>viewport</code></td><td>Mobilon is normális méretben jelenik meg az oldal.</td></tr>
+    <tr><td><code>&lt;title&gt;</code></td><td>A böngészőfül felirata. Írd bele a nevedet!</td></tr>
+    <tr><td><code>&lt;link&gt;</code></td><td>Ez köti be a <strong>külső stíluslapot</strong>. Üres elem: nincs zárócímkéje.</td></tr>
+  </table>
+  <div class="box tipp">
+    <span class="lbl">Ellenőrzés</span>
+    <p>Mentés után nyisd meg a fájlt böngészőben. Fehér, üres oldalt fogsz látni &ndash; de a <strong>böngészőfülön</strong> már ott a neved. Ha ott van, jó úton jársz.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">3</span>A stíluslap indítása &ndash; színek és betűtípus</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Nyisd meg a <code>style.css</code>-t, és írd bele az alábbi két szabályt. Itt dől el az oldal alaphangulata.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="com">/* Minden elem így számolja a méretét: a padding és a border
+   beleszámít a megadott szélességbe. Szinte minden projekt így kezdődik. */</span>
+<span class="sel">*</span> {
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;
+}
+
+<span class="sel">body</span> {
+  <span class="prop">margin</span>: <span class="val">0</span>;                          <span class="com">/* a böngésző alapértelmezett margóját nullázzuk */</span>
+  <span class="prop">background-color</span>: <span class="hiany">/* HÁTTÉRSZÍN */</span>;
+  <span class="prop">color</span>: <span class="hiany">/* SZÖVEGSZÍN */</span>;
+  <span class="prop">font-family</span>: <span class="hiany">/* BETŰTÍPUS-LISTA */</span>;
+  <span class="prop">font-size</span>: <span class="val">17px</span>;
+  <span class="prop">line-height</span>: <span class="val">1.7</span>;                <span class="com">/* sortávolság: a betűméret 1,7-szerese */</span>
+}</pre>
+  <div class="box emmet">
+    <span class="lbl">Emmet a CSS-fájlban is</span>
+    <p>A <code>*</code> szabály törzsébe elég ennyit írnod: <span class="rov">bxz</span> + <kbd>Tab</kbd>. A <code>body</code> szabályhoz pedig sorban: <span class="rov">m0</span>, <span class="rov">fz17</span>, <span class="rov">lh1.7</span> &ndash; mindegyik után <kbd>Tab</kbd>. A színes tulajdonságoknál <span class="rov">bgc</span> és <span class="rov">c</span>, majd írd át az értéket a saját kódodra.</p>
+  </div>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el &ndash; a színpaletta</span>
+    <p>Válassz egy palettát az alábbiak közül, <strong>vagy keverj sajátot</strong> (pl. a <a href="https://coolors.co" target="_blank">coolors.co</a> oldalon). Írd fel magadnak az öt kódot, mert az egész feladatlapon ezekre fogsz hivatkozni!</p>
+    <table>
+      <tr><th>Paletta</th><th>Főszín</th><th>Sötét változat</th><th>Oldal háttere</th><th>Doboz háttere</th><th>Kiemelés</th></tr>
+      <tr><td>Erdőzöld</td>
+        <td><span class="sw" style="background:#4a7c72"></span>#4a7c72</td>
+        <td><span class="sw" style="background:#3c655d"></span>#3c655d</td>
+        <td><span class="sw" style="background:#f5f2ec"></span>#f5f2ec</td>
+        <td><span class="sw" style="background:#ffffff"></span>#ffffff</td>
+        <td><span class="sw" style="background:#c4844f"></span>#c4844f</td></tr>
+      <tr><td>Tengerkék</td>
+        <td><span class="sw" style="background:#3f6d99"></span>#3f6d99</td>
+        <td><span class="sw" style="background:#2f5474"></span>#2f5474</td>
+        <td><span class="sw" style="background:#f2f5f8"></span>#f2f5f8</td>
+        <td><span class="sw" style="background:#ffffff"></span>#ffffff</td>
+        <td><span class="sw" style="background:#d08a54"></span>#d08a54</td></tr>
+      <tr><td>Szilvalila</td>
+        <td><span class="sw" style="background:#6b5b95"></span>#6b5b95</td>
+        <td><span class="sw" style="background:#52456f"></span>#52456f</td>
+        <td><span class="sw" style="background:#f6f3f8"></span>#f6f3f8</td>
+        <td><span class="sw" style="background:#ffffff"></span>#ffffff</td>
+        <td><span class="sw" style="background:#b5697f"></span>#b5697f</td></tr>
+      <tr><td>Terrakotta</td>
+        <td><span class="sw" style="background:#b05f3c"></span>#b05f3c</td>
+        <td><span class="sw" style="background:#8c4a2e"></span>#8c4a2e</td>
+        <td><span class="sw" style="background:#faf4ee"></span>#faf4ee</td>
+        <td><span class="sw" style="background:#ffffff"></span>#ffffff</td>
+        <td><span class="sw" style="background:#5a7d6a"></span>#5a7d6a</td></tr>
+    </table>
+    <p><strong>Ha sajátot keversz, két szabályt tarts be:</strong> (1) a háttér legyen <em>világos</em>, a szöveg <em>sötét</em> &ndash; így olvasható; (2) legfeljebb két erős színt használj, a többi maradjon semleges. A szövegszín ne legyen tiszta fekete, inkább nagyon sötét szürkésbarna (pl. <code>#33302b</code>) &ndash; kellemesebb olvasni.</p>
+  </div>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el &ndash; a betűtípus</span>
+    <p>A <code>font-family</code> értéke egy <strong>lista</strong>: ha az első betűtípus nincs meg a gépen, a böngésző a következőt próbálja. Az utolsó mindig általános családnév legyen (<code>sans-serif</code> = talp nélküli, <code>serif</code> = talpas). Válassz egyet:</p>
+    <ul>
+      <li><code>"Segoe UI", Arial, sans-serif</code> &ndash; semleges, modern</li>
+      <li><code>Verdana, Geneva, sans-serif</code> &ndash; szélesebb, nagyon jól olvasható</li>
+      <li><code>"Trebuchet MS", Arial, sans-serif</code> &ndash; barátságos, lendületes</li>
+      <li><code>Georgia, "Times New Roman", serif</code> &ndash; talpas, komolyabb, „könyves" hatás</li>
+    </ul>
+    <p>A több szóból álló neveket <strong>idézőjelbe</strong> kell tenni!</p>
+  </div>
+  <div class="box tipp">
+    <span class="lbl">Ellenőrzés</span>
+    <p>Frissítés után az oldal háttere már nem fehér, hanem a választott színed. Ha még mindig fehér: elgépelted a <code>&lt;link&gt;</code> sort, nem <code>style.css</code> a fájl neve, vagy nem ugyanabban a mappában van, mint az <code>index.html</code>.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">4</span>A fejléc (HTML)</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Az oldal tetejére színes sáv kerül: profilkép, a neved és egy rövid mottó. A <code>&lt;body&gt;</code> nyitócímkéje után írd:</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"fejlec"</span> <span class="att">id</span>=<span class="str">"tetejere"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="att">class</span>=<span class="str">"profilkep"</span> <span class="att">src</span>=<span class="str">"kepek/profil.png"</span> <span class="att">alt</span>=<span class="str">"</span><span class="hiany">Kiss Bence profilképe</span><span class="str">"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span><span class="hiany">A te neved</span><span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p</span> <span class="att">class</span>=<span class="str">"motto"</span><span class="tag">&gt;</span><span class="hiany">három szó magadról</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>A <code>div</code> egy <strong>tároló</strong>: önmagában semmit nem csinál, de a <code>class</code> révén stílust tudunk adni neki és a benne lévőknek.</li>
+    <li>Az <code>id="tetejere"</code> <strong>egyedi</strong> azonosító &ndash; a lábléc „Vissza a lap tetejére" linkje fog rá hivatkozni. Egy <code>id</code> egy oldalon csak egyszer szerepelhet!</li>
+    <li>Az <code>img</code> <strong>üres elem</strong>: nincs <code>&lt;/img&gt;</code>. A <code>src</code> a kép helye (relatív útvonal: <em>a kepek mappában a profil.png</em>), az <code>alt</code> pedig a helyettesítő szöveg, ha a kép nem tölt be.</li>
+    <li>Egy oldalon <strong>egyetlen</strong> <code>h1</code> legyen &ndash; ez az oldal fő címe. Ide a neved kerül.</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; a teljes fejléc egy sorból</span>
+<pre>.fejlec#tetejere&gt;img.profilkep+h1{A te neved}+p.motto</pre>
+    <p><kbd>Tab</kbd> &ndash; és megvan a négy elem, helyes egymásba ágyazással. Már csak a kép <code>src</code> és <code>alt</code> értékét kell kitöltened (a <kbd>Tab</kbd> odaviszi a kurzort), és a mottót beírnod.</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; a mottó</span>
+    <p>A mottó három-négy szó, ami elárul valamit rólad. Segítő kérdések:</p>
+    <ul>
+      <li>Mivel foglalkozol a legszívesebben, ha nincs kötelező dolgod?</li>
+      <li>Mi az a két-három dolog, amiről a barátaid azonnal rád ismernének?</li>
+      <li>Van olyan szokásod, amin nevetni szoktak? (pl. „örök későn kelő", „reggeli teafüggő")</li>
+    </ul>
+    <p>A szavakat <code>&amp;middot;</code> entitással válaszd el, így: <code>rajzolás &amp;middot; futás &amp;middot; sci-fi</code>.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">5</span>A fejléc stílusa (CSS)</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Írd a <code>style.css</code> végére. Itt már a saját színeidet használod.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="sel">.fejlec</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* FŐSZÍN */</span>;
+  <span class="prop">color</span>: <span class="val">#ffffff</span>;                  <span class="com">/* fehér szöveg a sötét háttéren */</span>
+  <span class="prop">padding</span>: <span class="val">40px 20px 32px</span>;         <span class="com">/* belső térköz: fent / oldalt / lent */</span>
+  <span class="prop">text-align</span>: <span class="val">center</span>;             <span class="com">/* középre igazít mindent, ami benne van */</span>
+}
+
+<span class="sel">.profilkep</span> {
+  <span class="prop">width</span>: <span class="val">150px</span>;
+  <span class="prop">height</span>: <span class="val">150px</span>;
+  <span class="prop">border</span>: <span class="val">5px solid #ffffff</span>;       <span class="com">/* vastagság stílus szín */</span>
+  <span class="prop">border-radius</span>: <span class="val">50%</span>;             <span class="com">/* 50% = tökéletes kör */</span>
+  <span class="prop">margin-bottom</span>: <span class="val">14px</span>;
+}
+
+<span class="sel">.fejlec h1</span> {                        <span class="com">/* leszármazott szelektor:
+                                          csak a fejlécben lévő h1 */</span>
+  <span class="prop">margin</span>: <span class="val">0 0 6px</span>;
+  <span class="prop">font-size</span>: <span class="hiany">/* 30px és 36px között */</span>;
+}
+
+<span class="sel">.motto</span> {
+  <span class="prop">margin</span>: <span class="val">0</span>;
+  <span class="prop">color</span>: <span class="hiany">/* halvány szín, ami illik a fejléchez */</span>;
+  <span class="prop">font-style</span>: <span class="val">italic</span>;
+}</pre>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el</span>
+    <ul>
+      <li><strong>A mottó színe:</strong> a fehérnél halványabb, de olvasható. Két jó megoldás: a főszíned <em>világosabb</em> változata (pl. <code>#d6e6e1</code> a zöldhöz), vagy egy világosszürke (<code>#e8e8e8</code>).</li>
+      <li><strong>A profilkép formája:</strong> ha nem tetszik a kör, próbáld ki a <code>border-radius: 16px;</code> értéket &ndash; lekerekített négyzet lesz. A <code>0</code> éles sarkot ad.</li>
+      <li><strong>A kép mérete:</strong> 120px és 180px között bármi jó &ndash; de a <code>width</code> és a <code>height</code> legyen ugyanaz!</li>
+    </ul>
+  </div>
+  <div class="box figyelem">
+    <span class="lbl">Gyakori hiba</span>
+    <p>Ha nem a kép, hanem törött ikon és az alt-szöveg jelenik meg, az útvonal rossz. Ellenőrizd: tényleg <code>kepek</code> a mappa neve (nem <code>képek</code>), és a <code>src</code>-ben pontosan az a kiterjesztés áll, amilyen a fájl valójában? A <code>.png</code>, a <code>.jpg</code> és a <code>.jpeg</code> <strong>három különböző</strong> név &ndash; a böngésző nem találgat helyetted.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">6</span>A menü (HTML)</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>A fejléc <em>alá</em> (tehát a <code>&lt;/div&gt;</code> után) jön egy menüsáv öt hivatkozással. Ezek nem másik oldalra visznek, hanem az oldalon belül ugranak.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"menu"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#rolam"</span><span class="tag">&gt;</span>Rólam<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#tudas"</span><span class="tag">&gt;</span><span class="hiany">saját cím</span><span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#hobbi"</span><span class="tag">&gt;</span>Hobbijaim<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#utam"</span><span class="tag">&gt;</span><span class="hiany">saját cím</span><span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#kapcsolat"</span><span class="tag">&gt;</span>Kapcsolat<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>A <code>href="#rolam"</code> azt jelenti: <em>ugorj arra az elemre, aminek <code>id="rolam"</code> az azonosítója</em>. Ezeket az <code>id</code>-ket a 9., 11., 14. és 15. lépésben fogod kiosztani &ndash; addig a linkek nem működnek, ez normális.</li>
+    <li>A <code>#</code> csak a <code>href</code>-ben szerepel, az <code>id</code> értékében <strong>nem</strong>: <code>id="rolam"</code>, nem <code>id="#rolam"</code>.</li>
+    <li>Az <code>a</code> <strong>soron belüli</strong> elem, ezért az öt link egymás mellé kerül &ndash; pont ezt akarjuk.</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; öt link egy mozdulattal</span>
+    <p>A leggyorsabb út a váz legyártása, utána a kitöltés:</p>
+<pre>.menu&gt;a*5</pre>
+    <p>Ha az elsőt teljesen meg akarod adni, az attribútum és a szöveg is belefér a rövidítésbe:</p>
+<pre>.menu&gt;a[href=#rolam]{Rólam}+a[href=#tudas]{Amiben otthon vagyok}</pre>
+    <p><strong>Vigyázz:</strong> a szögletes zárójelen belül <em>ne</em> legyen szóköz a <code>#rolam</code> körül, a kapcsos zárójelben viszont nyugodtan lehet szóköz &ndash; az már a megjelenő szöveg.</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; a menüpontok</span>
+    <p>A második és negyedik menüpont címét te találod ki, mert a te dobozaidra mutatnak. Kérdések, amik segítenek:</p>
+    <ul>
+      <li>Hogyan neveznéd el azt a részt, ahol felsorolod, <strong>miben vagy jó</strong>? (pl. „Amiben otthon vagyok", „Amit tudok", „Az erősségeim")</li>
+      <li>Hogyan neveznéd el azt a részt, ahol <strong>évszámok szerint</strong> mondod el, hogyan jutottál idáig? (pl. „Az eddigi utam", „Mérföldkövek", „Így kezdődött")</li>
+    </ul>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">7</span>A menü stílusa (CSS) &ndash; és az első <code>:hover</code></h3>
+  <span class="cim">Mit csinálj</span>
+  <p>A menü sávja a főszíned sötét változatát kapja, a linkek fehérek és aláhúzás nélküliek lesznek.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="sel">.menu</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* SÖTÉT VÁLTOZAT */</span>;
+  <span class="prop">padding</span>: <span class="val">12px 20px</span>;
+  <span class="prop">text-align</span>: <span class="val">center</span>;
+}
+
+<span class="com">/* Leszármazott szelektor: csak a menün belüli linkekre vonatkozik,
+   a szövegben lévő linkeket nem bántja. */</span>
+<span class="sel">.menu a</span> {
+  <span class="prop">display</span>: <span class="val">inline-block</span>;          <span class="com">/* így kaphat rendes padding-ot */</span>
+  <span class="prop">color</span>: <span class="val">#ffffff</span>;
+  <span class="prop">text-decoration</span>: <span class="val">none</span>;         <span class="com">/* leveszi az aláhúzást */</span>
+  <span class="prop">padding</span>: <span class="val">6px 14px</span>;
+  <span class="prop">margin</span>: <span class="val">2px</span>;
+  <span class="prop">border-radius</span>: <span class="hiany">/* 0 vagy 6px – döntsd el */</span>;
+  <span class="prop">font-size</span>: <span class="val">15px</span>;
+}
+
+<span class="com">/* :hover = amikor az egér az elem fölött van */</span>
+<span class="sel">.menu a:hover</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* világosabb szín, mint a menüsáv */</span>;
+}</pre>
+  <div class="box tipp">
+    <span class="lbl">Miért kell az inline-block?</span>
+    <p>Az <code>a</code> alapból <strong>soron belüli</strong> elem: a fenti-lenti <code>padding</code> nem tolja arrébb a többi sort, ezért a hátterek egymásra csúsznának. Az <code>inline-block</code> a kettő keveréke: <em>egymás mellett marad</em>, de <em>méretezhető, mint egy doboz</em>. Ezt a trükköt a kártyáknál újra használjuk!</p>
+  </div>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el</span>
+    <p>A <code>:hover</code> háttérszíne. Két jó irány: (1) a menüsávnál <em>világosabb</em> árnyalat &ndash; visszafogott; (2) a <strong>kiemelő színed</strong> &ndash; feltűnőbb. Próbáld ki mindkettőt, és tartsd meg, amelyik jobban tetszik.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">8</span>A tartalom sávja &ndash; középre igazítás</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>A menü után nyiss egy nagy tárolót. Ebbe kerül majd az összes doboz, és ez fogja a tartalmat a képernyő közepén, olvasható szélességben tartani.</p>
+  <span class="cim">Hogyan (HTML)</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"tartalom"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- A 9–15. lépés minden doboza IDE, ezen belülre kerül --&gt;</span>
+
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Hogyan (CSS)</span>
+<pre><span class="sel">.tartalom</span> {
+  <span class="prop">width</span>: <span class="val">90%</span>;              <span class="com">/* keskeny képernyőn a szélesség 90%-a */</span>
+  <span class="prop">max-width</span>: <span class="hiany">/* 800–900px */</span>;   <span class="com">/* de sosem szélesebb ennél */</span>
+  <span class="prop">margin</span>: <span class="val">30px auto</span>;       <span class="com">/* fent-lent 30px, jobbra-balra auto = KÖZÉPRE */</span>
+}</pre>
+  <div class="box tipp">
+    <span class="lbl">A margin: auto trükk</span>
+    <p>Ha egy blokkszintű elemnek van megadott szélessége, és a bal-jobb margója <code>auto</code>, a böngésző a maradék helyet <strong>egyenlően elosztja</strong> a két oldalon &ndash; így kerül középre. A <code>width</code> és a <code>max-width</code> párosa miatt pedig az oldal telefonon is jól néz ki, egyetlen extra sor nélkül.</p>
+  </div>
+  <div class="box figyelem">
+    <span class="lbl">Vigyázz a zárócímkével!</span>
+    <p>A <code>&lt;/div&gt;</code> zárócímke csak a 15. lépés után jön. Innentől minden dobozt <strong>ezen belülre</strong> írj. Ha bizonytalan vagy: minden nyitócímkét húzz beljebb egy tabbal &ndash; így látszik, mi van min belül.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">9</span>A „Rólam" doboz (HTML)</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Az első fehér doboz, benne egy <code>h2</code> cím és három bekezdés.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"doboz"</span> <span class="att">id</span>=<span class="str">"rolam"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Rólam<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>
+    <span class="hiany">Első bekezdés: ki vagy, hol tanulsz.</span>
+    A nevedet tedd <span class="tag">&lt;strong&gt;</span>...<span class="tag">&lt;/strong&gt;</span> közé!
+  <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p&gt;</span>
+    <span class="hiany">Második bekezdés: mit szeretsz csinálni és miért.</span>
+    Egy szót emelj ki <span class="tag">&lt;em&gt;</span>...<span class="tag">&lt;/em&gt;</span> közé!
+  <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="att">class</span>=<span class="str">"halvany"</span><span class="tag">&gt;</span><span class="hiany">Egy rövid, halvány zárómondat.</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>A <code>class="doboz"</code> <strong>ismételhető</strong>: minden dobozod ezt kapja, és mind ugyanúgy fog kinézni. Az <code>id</code> viszont mindegyiknél <strong>más</strong>, mert a menü arra hivatkozik.</li>
+    <li>A <code>strong</code> fontos szöveget jelöl (félkövéren jelenik meg), az <code>em</code> hangsúlyost (dőlten). Ne a megjelenés miatt használd őket, hanem a jelentés miatt.</li>
+    <li>Egy elemnek <strong>lehet</strong> több osztálya és mellette azonosítója is &ndash; ahogy itt is: <code>class</code> + <code>id</code>.</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; a doboz váza, és ha még nincs kész a szöveged</span>
+<pre>.doboz#rolam&gt;h2{Rólam}+p*2+p.halvany</pre>
+    <p>Ha még gondolkodsz a szövegen, kérj <strong>ideiglenes kitöltést</strong>, hogy lásd az arányokat:</p>
+<pre>.doboz#rolam&gt;h2{Rólam}+p*2&gt;lorem30</pre>
+    <p>Így két, egyenként harmincszavas bekezdést kapsz. <strong>De ne feledd:</strong> a beadás előtt minden latin szöveget cserélj le a saját mondataidra!</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; három bekezdés magadról</span>
+    <p><strong>1. bekezdés (bemutatkozás, 2&ndash;3 mondat).</strong> Válaszolj ezekre:</p>
+    <ul>
+      <li>Hogy hívnak, hány éves vagy, melyik iskolába és milyen tagozatra jársz?</li>
+      <li>Mióta érdekel az, amivel foglalkozol? Volt egy konkrét pillanat, amikor elkezdted?</li>
+    </ul>
+    <p><strong>2. bekezdés (mi hajt téged, 2&ndash;3 mondat).</strong> Válassz egyet és arról írj:</p>
+    <ul>
+      <li>Mi tetszik a legjobban abban, amivel foglalkozol?</li>
+      <li>Mi volt az eddigi legjobb dolog, amit elkészítettél vagy megcsináltál?</li>
+      <li>Mi az, ami elsőre nem sikerült, de nem adtad fel?</li>
+    </ul>
+    <p><strong>3. bekezdés (egy mondat).</strong> Például: mi ez az oldal, mire használnád, vagy mikor frissítetted utoljára.</p>
+    <p class="lbl" style="margin-top:8px; color:#b45309;">Tilos: „Ez az én oldalam. Remélem tetszik." &ndash; ennél konkrétabb legyél!</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">10</span>A doboz stílusa &ndash; a box model gyakorlatban</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Ez a feladat legfontosabb CSS-szabálya: itt mind a négy réteg (tartalom &rarr; padding &rarr; border &rarr; margin) szerepel.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="sel">.doboz</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* DOBOZ HÁTTERE */</span>;
+  <span class="prop">border</span>: <span class="val">1px solid #e2ddd3</span>;      <span class="com">/* vékony, halvány keret körben */</span>
+  <span class="prop">border-left</span>: <span class="hiany">/* 6px solid FŐSZÍN */</span>;  <span class="com">/* vastag színes csík balra */</span>
+  <span class="prop">border-radius</span>: <span class="val">10px</span>;
+  <span class="prop">padding</span>: <span class="val">24px 28px</span>;            <span class="com">/* BELSŐ térköz: keret és szöveg között */</span>
+  <span class="prop">margin-bottom</span>: <span class="val">26px</span>;          <span class="com">/* KÜLSŐ térköz: a következő dobozig */</span>
+}
+
+<span class="sel">h2</span> {
+  <span class="prop">margin</span>: <span class="val">0 0 12px</span>;             <span class="com">/* fent 0, mert a doboz paddingja már megvan */</span>
+  <span class="prop">color</span>: <span class="hiany">/* FŐSZÍN sötétebb változata */</span>;
+  <span class="prop">font-size</span>: <span class="val">25px</span>;
+}
+
+<span class="sel">strong</span> {
+  <span class="prop">color</span>: <span class="hiany">/* ugyanaz, mint a h2 színe */</span>;
+}
+
+<span class="sel">.halvany</span> {
+  <span class="prop">color</span>: <span class="hiany">/* szürkés, halvány szín */</span>;
+  <span class="prop">font-size</span>: <span class="val">15px</span>;
+}</pre>
+  <span class="cim">Próbáld ki és értsd meg!</span>
+  <p>Mielőtt továbbmész, csináld meg ezt a három kísérletet a böngészőben (utána állítsd vissza):</p>
+  <ol>
+    <li>Írd át a <code>padding</code> értékét <code>24px 28px</code>-ról <code>0</code>-ra. <strong>Mi történik?</strong> A szöveg odatapad a kerethez &ndash; ez a <em>belső</em> térköz szerepe.</li>
+    <li>Írd át a <code>margin-bottom</code>-ot <code>0</code>-ra. <strong>Mi történik?</strong> A dobozok összeérnek &ndash; ez a <em>külső</em> térköz szerepe.</li>
+    <li>Vedd ki a <code>border-radius</code> sort. <strong>Mi történik?</strong> Éles sarkok lesznek.</li>
+  </ol>
+  <div class="box valaszd">
+    <span class="lbl">Ezt te döntöd el</span>
+    <ul>
+      <li><strong>A bal oldali csík:</strong> lehet vastagabb (<code>8px</code>) vagy vékonyabb (<code>4px</code>) &ndash; sőt elhagyhatod, és helyette <code>border-top</code>-ot tehetsz fölé. A lényeg: minden doboz ugyanúgy nézzen ki.</li>
+      <li><strong>Lekerekítés:</strong> <code>0</code> (szögletes, „szigorú"), <code>10px</code> (barátságos), <code>20px</code> (nagyon lágy).</li>
+      <li><strong>Árnyék (extra):</strong> ha tetszik, add hozzá: <code>box-shadow: 0 2px 6px rgba(0,0,0,0.06);</code> &ndash; finoman kiemeli a dobozt a háttérből.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">11</span>A második doboz &ndash; felsorolás (<code>ul</code>)</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Az előző doboz <em>után</em>, de a <code>.tartalom</code> divben belül. Ugyanaz a <code>doboz</code> osztály, más <code>id</code> &ndash; így nem kell új CSS-t írni hozzá, csak a listát kell megformázni.</p>
+  <span class="cim">Hogyan (HTML)</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"doboz"</span> <span class="att">id</span>=<span class="str">"tudas"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span><span class="hiany">a 6. lépésben kitalált címed</span><span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span><span class="hiany">Egy bevezető mondat a listához.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;ul</span> <span class="att">class</span>=<span class="str">"lista"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;li&gt;&lt;strong&gt;</span><span class="hiany">Dolog</span><span class="tag">&lt;/strong&gt;</span> &amp;ndash; <span class="hiany">rövid magyarázat</span><span class="tag">&lt;/li&gt;</span>
+    <span class="com">&lt;!-- ide még 3-5 li --&gt;</span>
+  <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;p</span> <span class="att">class</span>=<span class="str">"halvany"</span><span class="tag">&gt;</span>
+    <span class="hiany">Egy mondat, benne egy külső hivatkozással:</span>
+    <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"https://developer.mozilla.org/hu/"</span> <span class="att">target</span>=<span class="str">"_blank"</span><span class="tag">&gt;</span>MDN Web Docs<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Hogyan (CSS)</span>
+<pre><span class="sel">.lista</span> {
+  <span class="prop">margin</span>: <span class="val">10px 0</span>;
+  <span class="prop">padding-left</span>: <span class="val">24px</span>;         <span class="com">/* hely a pontoknak / számoknak */</span>
+}
+
+<span class="sel">.lista li</span> {
+  <span class="prop">margin-bottom</span>: <span class="val">7px</span>;         <span class="com">/* levegő a sorok között */</span>
+}
+
+<span class="com">/* Az összes szövegbeli hivatkozás – a menü kivételével,
+   mert azt a .menu a szabály erősebben felülírja. */</span>
+<span class="sel">a</span> {
+  <span class="prop">color</span>: <span class="hiany">/* FŐSZÍN */</span>;
+}
+
+<span class="sel">a:hover</span> {
+  <span class="prop">color</span>: <span class="hiany">/* KIEMELŐ SZÍN */</span>;
+}</pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>Az <code>ul</code> = számozatlan lista (pontok), az <code>ol</code> = számozott. Mindkettőben az elemek <code>li</code>-k. A <code>li</code>-t <strong>csak</strong> <code>ul</code>-en vagy <code>ol</code>-on belül szabad használni.</li>
+    <li>A <code>target="_blank"</code> új lapon nyitja meg a linket &ndash; külső oldalnál ez a szokás, hogy a látogató ne veszítse el a te oldaladat.</li>
+    <li>A külső link <code>href</code>-je <strong>teljes címmel</strong> kezdődik (<code>https://</code>), a saját fájljaidra viszont relatív útvonallal hivatkozol.</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; listák másodpercek alatt</span>
+    <p>Az ötelemű lista, mindegyik elem elején félkövér résszel:</p>
+<pre>ul.lista&gt;li*5&gt;strong</pre>
+    <p>A teljes doboz egyetlen rövidítésből:</p>
+<pre>.doboz#tudas&gt;h2+p+ul.lista&gt;li*5&gt;strong</pre>
+    <p>Ha menet közben rájössz, hogy hat elem kell, ne írj új rövidítést: állj az utolsó <code>&lt;li&gt;</code> sorára, és nyomj <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>&darr;</kbd>-t &ndash; lemásolja a sort.</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; 4&ndash;6 listaelem</span>
+    <p>Mit tegyél a listába? Válaszd ki, melyik kérdés illik rád jobban, és aszerint írj:</p>
+    <ul>
+      <li>Milyen tantárgyakban, sportokban, programokban vagy ügyes?</li>
+      <li>Milyen programokat, eszközöket tudsz használni (pl. Word, Photoshop, varrógép, forrasztópáka)?</li>
+      <li>Milyen nyelven beszélsz, és milyen szinten?</li>
+      <li>Mi az, amit <em>most</em> tanulsz? (Az utolsó listaelem legyen ez, <code>&lt;em&gt;Épp tanulom:&lt;/em&gt;</code> kezdettel.)</li>
+    </ul>
+    <p>A záró mondatban egy hozzád illő weboldalra linkelj: kedvenc tanulóoldal, sportegyesület, zenekar, könyvsorozat honlapja.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">12</span>Hobbi-kártyák (HTML) &ndash; három doboz egymás mellett</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Most nem fehér doboz jön, hanem egy középre igazított cím, alatta három kis kártya képpel. A <code>.tartalom</code> divben belül maradsz.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="tag">&lt;h2</span> <span class="att">class</span>=<span class="str">"kozepre"</span> <span class="att">id</span>=<span class="str">"hobbi"</span><span class="tag">&gt;</span>Hobbijaim<span class="tag">&lt;/h2&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"kartyak"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"kartya"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="att">src</span>=<span class="str">"kepek/hobbi-1.jpg"</span> <span class="att">alt</span>=<span class="str">"</span><span class="hiany">mit ábrázol a kép</span><span class="str">"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3&gt;</span><span class="hiany">A hobbi neve</span><span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="hiany">Egy-két mondat róla.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="com">&lt;!-- Másold le a fenti kártyát még kétszer,
+       és írd át benne a képet, a címet és a szöveget! --&gt;</span>
+
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>Ez <strong>egymásba ágyazás</strong>: a <code>.kartyak</code> divben van három <code>.kartya</code> div, azokban pedig kép, cím és bekezdés. Zárd a címkéket fordított sorrendben!</li>
+    <li>A <code>h3</code> a <code>h2</code> alárendeltje. Ne ugorj szintet: a <code>h2</code> után <code>h3</code> jön, nem <code>h4</code>.</li>
+    <li>Mindhárom képnek <strong>saját</strong>, a tartalmát leíró <code>alt</code> szövege legyen &ndash; ne az legyen mindháromban, hogy „kép".</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; itt spórolsz a legtöbbet</span>
+    <p>Ne másolgass kézzel! Ez a sor mindhárom kártyát legyártja, számozott címmel együtt:</p>
+<pre>.kartyak&gt;.kartya*3&gt;img+h3{Hobbi $}+p</pre>
+    <p>Ha a képek neve is sorszámozott (<code>hobbi-1.jpg</code>, <code>hobbi-2.jpg</code>…), a <code>$</code> az attribútumban is működik &ndash; így a <code>src</code> értékeit sem kell egyenként beírnod:</p>
+<pre>.kartyak&gt;.kartya*3&gt;img[src=kepek/hobbi-$.jpg]+h3+p</pre>
+    <p>Utána már csak az <code>alt</code> szövegeket, a címeket és a bekezdéseket kell kitöltened &ndash; a <kbd>Tab</kbd> sorra viszi a kurzort mindegyikre.</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; három hobbi</span>
+    <p>Válassz ki három dolgot, amit szívesen csinálsz. Mindegyikhez írj 1&ndash;2 mondatot &ndash; ezek a kérdések segítenek:</p>
+    <ul>
+      <li>Mióta csinálod, és hogyan kezdődött?</li>
+      <li>Milyen gyakran csinálod? (pl. „hetente kétszer", „minden nyáron")</li>
+      <li>Mi benne a jó neked &ndash; mi az, amiért mások esetleg nem értik, te mégis szereted?</li>
+      <li>Mi volt eddig a legemlékezetesebb élményed vele kapcsolatban?</li>
+    </ul>
+    <p>Ne kelljen mindegyikre válaszolni! Válaszd ki hobbinként azt az egyet, amelyikre a legérdekesebb válaszod van. A <strong>konkrét</strong> részlet mindig jobb, mint az általános: „a Zempléni-hegység a kedvencem" &gt; „szeretek túrázni".</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">13</span>A kártyák stílusa (CSS) &ndash; inline-block</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>A három kártyát egymás mellé rendezzük. A trükk ugyanaz, mint a menünél: <code>display: inline-block</code>.</p>
+  <span class="cim">Hogyan</span>
+<pre><span class="sel">.kozepre</span> {
+  <span class="prop">text-align</span>: <span class="val">center</span>;
+}
+
+<span class="sel">.kartyak</span> {
+  <span class="prop">text-align</span>: <span class="val">center</span>;           <span class="com">/* a kártyákat középre húzza */</span>
+  <span class="prop">margin-bottom</span>: <span class="val">26px</span>;
+}
+
+<span class="sel">.kartya</span> {
+  <span class="prop">display</span>: <span class="val">inline-block</span>;      <span class="com">/* egymás mellé, de méretezhetők */</span>
+  <span class="prop">width</span>: <span class="hiany">/* 230–260px */</span>;
+  <span class="prop">vertical-align</span>: <span class="val">top</span>;        <span class="com">/* a tetejüknél igazodjanak egymáshoz */</span>
+  <span class="prop">text-align</span>: <span class="val">left</span>;           <span class="com">/* a kártyán BELÜL viszont balra */</span>
+  <span class="prop">background-color</span>: <span class="hiany">/* DOBOZ HÁTTERE */</span>;
+  <span class="prop">border</span>: <span class="val">1px solid #e2ddd3</span>;
+  <span class="prop">border-radius</span>: <span class="val">10px</span>;
+  <span class="prop">padding</span>: <span class="val">14px</span>;
+  <span class="prop">margin</span>: <span class="val">8px 6px</span>;
+}
+
+<span class="sel">.kartya img</span> {
+  <span class="prop">width</span>: <span class="val">100%</span>;                 <span class="com">/* a szülő (kártya) teljes szélessége */</span>
+  <span class="prop">border-radius</span>: <span class="val">6px</span>;
+}
+
+<span class="sel">.kartya p</span> {
+  <span class="prop">font-size</span>: <span class="val">15px</span>;
+  <span class="prop">color</span>: <span class="hiany">/* halvány szövegszín */</span>;
+}
+
+<span class="sel">h3</span> {
+  <span class="prop">margin</span>: <span class="val">12px 0 6px</span>;
+  <span class="prop">color</span>: <span class="hiany">/* FŐSZÍN */</span>;
+  <span class="prop">font-size</span>: <span class="val">19px</span>;
+}</pre>
+  <div class="box tipp">
+    <span class="lbl">Két dolog, amit érdemes kipróbálni</span>
+    <ul>
+      <li><strong>Szűkítsd össze a böngészőablakot!</strong> Amikor már nem fér ki három kártya egymás mellé, a harmadik magától új sorba ugrik. Ehhez egyetlen sort sem kellett írnunk &ndash; ez az <code>inline-block</code> ajándéka.</li>
+      <li><strong>Vedd ki a <code>vertical-align: top</code> sort.</strong> A rövidebb kártyák leesnek az aljához igazodva &ndash; csúnya lesz. Tedd vissza!</li>
+    </ul>
+  </div>
+  <div class="box figyelem">
+    <span class="lbl">Gyakori hiba</span>
+    <p>Ha a kártyák <em>egymás alatt</em> maradnak, ellenőrizd: (1) tényleg <code>inline-block</code> van, nem <code>block</code>; (2) a <code>width</code> nem túl nagy &ndash; három kártya szélessége a margókkal együtt férjen bele a <code>.tartalom</code> szélességébe (250px × 3 + margók ≈ 790px).</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">14</span>Idővonal doboz &ndash; számozott lista, elválasztó, idézet</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Új fehér doboz: benne számozott lista, egy vízszintes vonal, alatta egy kiemelt idézet.</p>
+  <span class="cim">Hogyan (HTML)</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"doboz"</span> <span class="att">id</span>=<span class="str">"utam"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span><span class="hiany">a 6. lépésben kitalált címed</span><span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span><span class="hiany">Bevezető mondat.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;ol</span> <span class="att">class</span>=<span class="str">"lista"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;li&gt;&lt;strong&gt;</span><span class="hiany">2022</span><span class="tag">&lt;/strong&gt;</span> &amp;ndash; <span class="hiany">mi történt akkor</span><span class="tag">&lt;/li&gt;</span>
+    <span class="com">&lt;!-- még 3 li, időrendben --&gt;</span>
+  <span class="tag">&lt;/ol&gt;</span>
+  <span class="tag">&lt;hr&gt;</span>
+  <span class="tag">&lt;p</span> <span class="att">class</span>=<span class="str">"idezet"</span><span class="tag">&gt;</span>&amp;bdquo;<span class="hiany">A kedvenc mondatod.</span>&amp;rdquo;<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Hogyan (CSS)</span>
+<pre><span class="sel">hr</span> {
+  <span class="prop">border</span>: <span class="val">none</span>;                    <span class="com">/* a böngésző alap vonala csúnya, leszedjük */</span>
+  <span class="prop">border-top</span>: <span class="val">1px solid #e2ddd3</span>;  <span class="com">/* és rajzolunk sajátot */</span>
+  <span class="prop">margin</span>: <span class="val">20px 0</span>;
+}
+
+<span class="sel">.idezet</span> {
+  <span class="prop">border-left</span>: <span class="hiany">/* 4px solid KIEMELŐ SZÍN */</span>;
+  <span class="prop">background-color</span>: <span class="hiany">/* nagyon halvány szín */</span>;
+  <span class="prop">padding</span>: <span class="val">12px 18px</span>;
+  <span class="prop">margin</span>: <span class="val">16px 0 0</span>;
+  <span class="prop">font-style</span>: <span class="val">italic</span>;
+}</pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>Az <code>ol</code> automatikusan sorszámoz &ndash; ne írd bele kézzel az „1." számot!</li>
+    <li>A <code>hr</code> <strong>üres elem</strong>, nincs zárócímkéje.</li>
+    <li>A magyar idézőjelek entitásai: <code>&amp;bdquo;</code> alul nyitó, <code>&amp;rdquo;</code> felül záró.</li>
+  </ul>
+  <div class="box emmet">
+    <span class="lbl">Emmet &ndash; számozott évek automatikusan</span>
+    <p>A <code>$</code> nem csak sorszámot tud: ha 2022-től indulsz, ezt írd:</p>
+<pre>.doboz#utam&gt;h2+p+ol.lista&gt;li*4&gt;strong{202$}</pre>
+    <p>Négy listaelemet kapsz <strong>2021</strong>, <strong>2022</strong>, <strong>2023</strong>, <strong>2024</strong> évszámokkal &ndash; a saját éveidre már csak át kell írnod, ami nem stimmel. A <code>&lt;hr&gt;</code>-t és az idézetet utána tedd hozzá: <span class="rov">hr+p.idezet</span>.</p>
+  </div>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget &ndash; 4 évszám és egy idézet</span>
+    <p>Négy fontos állomás az életedből, időrendben. Segítő kérdések:</p>
+    <ul>
+      <li>Mikor kezdtél el foglalkozni azzal, ami ma a hobbid?</li>
+      <li>Melyik évben váltottál iskolát, szakot, egyesületet, csapatot?</li>
+      <li>Volt versenyed, vizsgád, fellépésed, szereplésed? Melyik évben?</li>
+      <li>Mi volt az első dolog, amit teljesen egyedül készítettél el?</li>
+    </ul>
+    <p><strong>Az idézet:</strong> lehet a kedvenc mondatod egy könyvből, filmből, dalból, mondhatta egy tanárod vagy a nagymamád &ndash; de akár te is kitalálhatod. Ha idézel valakit, a mondat után írd oda a nevét.</p>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">15</span>Kapcsolat doboz &ndash; két osztály egy elemen, és egy „gomb"</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Az utolsó doboz kiemelt színt kap. Ehhez <strong>két osztályt</strong> adunk ugyanannak a divnek: a <code>doboz</code> adja az alapot, a <code>kiemelt</code> pedig felülír belőle pár dolgot.</p>
+  <span class="cim">Hogyan (HTML)</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"doboz kiemelt"</span> <span class="att">id</span>=<span class="str">"kapcsolat"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Kapcsolat<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span><span class="hiany">Egy mondat: miért írjanak neked.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;ul</span> <span class="att">class</span>=<span class="str">"lista"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;li&gt;</span>E-mail:
+      <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"mailto:</span><span class="hiany">nev@example.com</span><span class="str">"</span><span class="tag">&gt;</span><span class="hiany">nev@example.com</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="hiany">Város: ...</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;p&gt;</span>
+    <span class="tag">&lt;a</span> <span class="att">class</span>=<span class="str">"gomb"</span> <span class="att">href</span>=<span class="str">"mailto:</span><span class="hiany">nev@example.com</span><span class="str">"</span><span class="tag">&gt;</span><span class="hiany">Írj nekem!</span><span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Hogyan (CSS)</span>
+<pre><span class="com">/* Csak azt írjuk felül, ami más – a többit a .doboz adja. */</span>
+<span class="sel">.kiemelt</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* halvány, meleg szín */</span>;
+  <span class="prop">border-left-color</span>: <span class="hiany">/* KIEMELŐ SZÍN */</span>;
+}
+
+<span class="com">/* Ez valójában egy link – csak gombnak látszik. */</span>
+<span class="sel">.gomb</span> {
+  <span class="prop">display</span>: <span class="val">inline-block</span>;
+  <span class="prop">background-color</span>: <span class="hiany">/* FŐSZÍN */</span>;
+  <span class="prop">color</span>: <span class="val">#ffffff</span>;
+  <span class="prop">text-decoration</span>: <span class="val">none</span>;
+  <span class="prop">padding</span>: <span class="val">11px 22px</span>;
+  <span class="prop">border-radius</span>: <span class="val">8px</span>;
+  <span class="prop">margin-top</span>: <span class="val">6px</span>;
+}
+
+<span class="sel">.gomb:hover</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* SÖTÉT VÁLTOZAT */</span>;
+  <span class="prop">color</span>: <span class="val">#ffffff</span>;              <span class="com">/* kell, mert az a:hover felülírná! */</span>
+}</pre>
+  <span class="cim">Amire figyelj</span>
+  <ul>
+    <li>A <code>class="doboz kiemelt"</code> &ndash; két osztály, <strong>szóközzel</strong> elválasztva. Mindkettő szabálya érvényes rá; ütközésnél a CSS-ben <em>később</em> álló nyer. Ezért kell a <code>.kiemelt</code> szabályt a <code>.doboz</code> alá írni!</li>
+    <li>A <code>mailto:</code> a levelezőprogramot nyitja meg. Írásmódja: <code>href="mailto:cim@pelda.hu"</code> &ndash; szóköz nélkül.</li>
+    <li>Itt <strong>zárd le</strong> a 8. lépésben nyitott <code>&lt;div class="tartalom"&gt;</code> elemet egy <code>&lt;/div&gt;</code>-vel!</li>
+  </ul>
+  <div class="box kerdes">
+    <span class="lbl">Írd meg a szöveget</span>
+    <ul>
+      <li>Miért írna neked valaki? (közös projekt, kérdés, csapatba hívás, tanulótárs keresés)</li>
+      <li>Milyen adatot adsz meg? <strong>Csak biztonságosat:</strong> iskolai vagy kitalált e-mail-cím, város (utca nélkül), esetleg egy nyilvános profil (pl. sportegyesületed oldala). Telefonszámot, lakcímet, iskolai osztályt <strong>ne</strong>!</li>
+      <li>Mi legyen a gomb felirata? Rövid, cselekvésre hívó: „Írj nekem!", „Beszéljünk!", „Kérdezz bátran!"</li>
+    </ul>
+  </div>
+</div>
+
+<div class="lepes">
+  <h3><span class="num">16</span>A lábléc</h3>
+  <span class="cim">Mit csinálj</span>
+  <p>Az utolsó elem, már a <code>.tartalom</code> divjén <strong>kívül</strong>, közvetlenül a <code>&lt;/body&gt;</code> előtt.</p>
+  <span class="cim">Hogyan (HTML)</span>
+<pre><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"lablec"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>
+    Készítette: <span class="hiany">a neved</span> &amp;middot; <span class="hiany">évszám</span> &amp;middot;
+    <span class="tag">&lt;a</span> <span class="att">href</span>=<span class="str">"#tetejere"</span><span class="tag">&gt;</span>Vissza a lap tetejére<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="att">class</span>=<span class="str">"apro"</span><span class="tag">&gt;</span><span class="hiany">Iskolai gyakorlófeladat. (Ha internetes képet használtál: a kép forrása.)</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+  <span class="cim">Hogyan (CSS)</span>
+<pre><span class="sel">.lablec</span> {
+  <span class="prop">background-color</span>: <span class="hiany">/* SÖTÉT VÁLTOZAT */</span>;
+  <span class="prop">color</span>: <span class="hiany">/* halvány világos szín */</span>;
+  <span class="prop">text-align</span>: <span class="val">center</span>;
+  <span class="prop">padding</span>: <span class="val">22px 20px</span>;
+  <span class="prop">margin-top</span>: <span class="val">40px</span>;
+  <span class="prop">font-size</span>: <span class="val">15px</span>;
+}
+
+<span class="sel">.lablec a</span> {
+  <span class="prop">color</span>: <span class="val">#ffffff</span>;              <span class="com">/* a sötét sávon a főszínű link olvashatatlan lenne */</span>
+}
+
+<span class="sel">.apro</span> {
+  <span class="prop">font-size</span>: <span class="val">13px</span>;
+  <span class="prop">color</span>: <span class="hiany">/* még halványabb szín */</span>;
+}</pre>
+  <div class="box tipp">
+    <span class="lbl">Most próbáld ki a menüt!</span>
+    <p>Minden <code>id</code> megvan, tehát a menü és a „Vissza a lap tetejére" link is működik. Kattints végig mind az ötön! Ha valamelyik nem ugrik: elgépelted az <code>id</code>-t, vagy lemaradt a <code>#</code> a <code>href</code>-ből.</p>
+  </div>
+</div>
+
+<h2 class="blokk">Ellenőrzés &ndash; nézd végig, mielőtt beadod</h2>
+
+<div class="lepes">
+  <h3>Önellenőrző lista</h3>
+  <ul class="check">
+    <li>A <strong>böngészőfülön</strong> a nevem látszik, nem az, hogy „Document".</li>
+    <li>Az ékezetes betűk (<em>ő, ű</em>) rendesen jelennek meg.</li>
+    <li>Mind a <strong>4 kép</strong> betöltődik, és mindegyiknek van értelmes <code>alt</code> szövege.</li>
+    <li>A profilképem <strong>négyzetes, 300&times;300 pixeles</strong> &ndash; nem torzul a kör alakú vágásnál.</li>
+    <li>A CSS <strong>külön fájlban</strong> van, és az <code>index.html</code>-ben <strong>nincs</strong> <code>style</code> attribútum és <code>&lt;style&gt;</code> elem.</li>
+    <li>Pontosan <strong>egy</strong> <code>h1</code> van az oldalon.</li>
+    <li>Minden <code>id</code> <strong>egyedi</strong>, és mind az 5 menüpont a helyére ugrik.</li>
+    <li>Van az oldalon <code>ul</code> <strong>és</strong> <code>ol</code> lista is.</li>
+    <li>Van legalább egy külső link <code>target="_blank"</code>-kel, és egy <code>mailto:</code> link.</li>
+    <li>A linkek <strong>színe megváltozik</strong>, ha rájuk viszem az egeret (<code>:hover</code>).</li>
+    <li>A három hobbi-kártya <strong>egymás mellett</strong> van széles ablakban.</li>
+    <li>A szöveg <strong>rólam</strong> szól, saját mondatokkal &ndash; nincs benne semmi a mintából.</li>
+    <li><strong>Nem maradt kitöltőszöveg</strong> az oldalon: a <code>Lorem</code> szóra keresve (<kbd>Ctrl</kbd>+<kbd>F</kbd>) nincs találat.</li>
+    <li>Nincs az oldalon valós telefonszám, lakcím vagy magánjellegű e-mail-cím.</li>
+    <li>Szűk böngészőablakban is olvasható az oldal, nem lóg ki semmi.</li>
+    <li>Minden nyitócímkének van párja &ndash; az oldal alján nincs „elárvult" <code>&lt;/div&gt;</code>.</li>
+  </ul>
+</div>
+
+<div class="lepes">
+  <h3>Ha valami nem stimmel &ndash; gyakori hibák</h3>
+  <table>
+    <tr><th>Amit látsz</th><th>Mi lehet a baj</th></tr>
+    <tr><td>Az egész oldal formázatlan, fekete-fehér</td><td>A <code>&lt;link&gt;</code> sor hiányzik vagy hibás; a CSS-fájl neve más; nem egy mappában vannak.</td></tr>
+    <tr><td>Egy CSS-szabály nem érvényesül</td><td>Hiányzik a <code>;</code> az előző sor végén, vagy a <code>}</code> a szabály végéről. Elírtad az osztálynevet? A CSS-ben van előtte pont (<code>.doboz</code>), a HTML-ben nincs (<code>class="doboz"</code>).</td></tr>
+    <tr><td>A fél oldal félkövér vagy dőlt lett</td><td>Elfelejtettél zárni egy <code>&lt;strong&gt;</code> vagy <code>&lt;em&gt;</code> elemet.</td></tr>
+    <tr><td>Minden doboz beljebb csúszott</td><td>Egy <code>&lt;/div&gt;</code> lemaradt, így a következő doboz az előzőn <em>belülre</em> került.</td></tr>
+    <tr><td>Kacatok az ékezetek helyén</td><td>Hiányzik a <code>&lt;meta charset="UTF-8"&gt;</code>, vagy a szerkesztő nem UTF-8-ban mentett.</td></tr>
+    <tr><td>Nem ugranak a menüpontok</td><td>Az <code>id</code> értékében ne legyen <code>#</code>, ékezet és szóköz. A <code>href</code>-ben viszont kell a <code>#</code>.</td></tr>
+  </table>
+  <div class="box tipp">
+    <span class="lbl">A legjobb hibakereső eszköz</span>
+    <p><code>F12</code> &rarr; <strong>Elements</strong> fül: rákattintva bármelyik elemre látod, milyen CSS-szabályok vonatkoznak rá, és melyik van áthúzva (mert egy másik felülírta). A <strong>Console</strong> fül pedig kiírja, ha egy fájlt (képet, CSS-t) nem talál a böngésző.</p>
+  </div>
+</div>
+
+<h2 class="blokk">Ha kész vagy és van kedved &ndash; extra feladatok</h2>
+
+<div class="lepes">
+  <h3>Válassz kettőt</h3>
+  <ol>
+    <li><strong>Kártya-kiemelés:</strong> írj <code>.kartya:hover</code> szabályt, ami egérrel fölé húzva megváltoztatja a kártya keretének színét (<code>border-color</code>).</li>
+    <li><strong>Második oldal:</strong> készíts <code>kedvenceim.html</code> néven egy második lapot (ugyanaz a <code>style.css</code>!), és linkeld be a menübe. A visszafelé út se maradjon el: <code>&lt;a href="index.html"&gt;</code>.</li>
+    <li><strong>Négy kártya:</strong> tegyél be egy negyedik hobbi-kártyát, és nézd meg, hol tördel a böngésző. Kell hozzá módosítani a <code>width</code> értékét?</li>
+    <li><strong>Egyedi felsorolásjel:</strong> nézz utána a <code>list-style-type</code> tulajdonságnak, és állítsd a listádat <code>square</code>-re vagy <code>circle</code>-re.</li>
+    <li><strong>Árnyék és mélység:</strong> adj <code>box-shadow</code>-ot a dobozoknak, és állítsd be úgy, hogy finom legyen, ne „úszós".</li>
+    <li><strong>Google Font:</strong> keress egy betűtípust a <a href="https://fonts.google.com" target="_blank">fonts.google.com</a> oldalon, és kösd be egy második <code>&lt;link&gt;</code> elemmel a <code>&lt;head&gt;</code>-be.</li>
+  </ol>
+</div>
+
+<div class="lablec">
+  <p>Beadás: tömörítsd a teljes mappát (<code>index.html</code> + <code>style.css</code> + <code>kepek</code> mappa) egy ZIP-fájlba, és töltsd fel a megadott helyre.</p>
+</div>
+
+</div>
+
+</body>
+</html>

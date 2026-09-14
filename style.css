@@ -93,3 +93,40 @@ strong {
   color: #2f54747c;
   font-size: 15px;
 }
+
+.kozepre {
+  text-align: center;
+}
+
+.kartyak {
+  text-align: center;           /* a kártyákat középre húzza */
+  margin-bottom: 26px;
+}
+
+.kartya {
+  display: inline-block;      /* egymás mellé, de méretezhetők */
+  width: 250px;
+  vertical-align: top;        /* a tetejüknél igazodjanak egymáshoz */
+  text-align: left;           /* a kártyán BELÜL viszont balra */
+  background-color: #ffffff;
+  border: 1px solid #e2ddd3;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 8px 6px;
+}
+
+.kartya img {
+  width: 100%;                 /* a szülő (kártya) teljes szélessége */
+  border-radius: 6px;
+}
+
+.kartya p {
+  font-size: 15px;
+  color: #2f54748e;
+}
+
+h3 {
+  margin: 12px 0 6px;
+  color: #3f6d99;
+  font-size: 19px;
+}
