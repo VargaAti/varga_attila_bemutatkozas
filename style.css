@@ -13,21 +13,20 @@ body {
 
 .fejlec {
   background-color: #3f6d99;
-  color: #ffffff;                  /* fehér szöveg a sötét háttéren */
-  padding: 40px 20px 32px;         /* belső térköz: fent / oldalt / lent */
-  text-align: center;             /* középre igazít mindent, ami benne van */
+  color: #ffffff;
+  padding: 40px 20px 32px;
+  text-align: center;
 }
 
 .profilkep {
   width: 150px;
   height: 150px;
-  border: 5px solid #ffffff;       /* vastagság stílus szín */
-  border-radius: 50%;             /* 50% = tökéletes kör */
+  border: 5px solid #ffffff;
+  border-radius: 50%;
   margin-bottom: 14px;
 }
 
-.fejlec h1 {                        /* leszármazott szelektor:
-                                          csak a fejlécben lévő h1 */
+.fejlec h1 {
   margin: 0 0 6px;
   font-size: 33px;
 }
@@ -45,9 +44,9 @@ body {
 }
 
 .menu a {
-  display: inline-block;          /* így kaphat rendes padding-ot */
+  display: inline-block;
   color: #ffffff;
-  text-decoration: none;         /* leveszi az aláhúzást */
+  text-decoration: none;
   padding: 6px 14px;
   margin: 2px;
   border-radius: 6;
@@ -59,28 +58,28 @@ body {
 }
 
 .tartalom {
-  width: 90%;              /* keskeny képernyőn a szélesség 90%-a */
-  max-width: 850px;   /* de sosem szélesebb ennél */
-  margin: 30px auto;       /* fent-lent 30px, jobbra-balra auto = KÖZÉPRE */
+  width: 90%;
+  max-width: 850px;
+  margin: 30px auto;
 }
 
 .doboz {
-  background-color: /* DOBOZ HÁTTERE */;
-  border: 1px solid #f2f5f8;      /* vékony, halvány keret körben */
-  border-left: 6px solid #3f6d99;  /* vastag színes csík balra */
+  background-color: #ffffff;
+  border: 1px solid #f2f5f8;
+  border-left: 6px solid #3f6d99;
   border-radius: 10px;
-  padding: 24px 28px;            /* BELSŐ térköz: keret és szöveg között */
-  margin-bottom: 26px;          /* KÜLSŐ térköz: a következő dobozig */
+  padding: 24px 28px;
+  margin-bottom: 26px;
 }
 
 h2 {
-  margin: 0 0 12px;             /* fent 0, mert a doboz paddingja már megvan */
+  margin: 0 0 12px;
   color: #2f5474;
   font-size: 25px;
 }
 
 h2 {
-  margin: 0 0 12px;             /* fent 0, mert a doboz paddingja már megvan */
+  margin: 0 0 12px;
   color: #2f5474;
   font-size: 25px;
 }
@@ -99,15 +98,15 @@ strong {
 }
 
 .kartyak {
-  text-align: center;           /* a kártyákat középre húzza */
+  text-align: center;
   margin-bottom: 26px;
 }
 
 .kartya {
-  display: inline-block;      /* egymás mellé, de méretezhetők */
+  display: inline-block;
   width: 250px;
-  vertical-align: top;        /* a tetejüknél igazodjanak egymáshoz */
-  text-align: left;           /* a kártyán BELÜL viszont balra */
+  vertical-align: top;
+  text-align: left;
   background-color: #ffffff;
   border: 1px solid #e2ddd3;
   border-radius: 10px;
@@ -116,7 +115,7 @@ strong {
 }
 
 .kartya img {
-  width: 100%;                 /* a szülő (kártya) teljes szélessége */
+  width: 100%;
   border-radius: 6px;
 }
 
@@ -129,4 +128,38 @@ h3 {
   margin: 12px 0 6px;
   color: #3f6d99;
   font-size: 19px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e2ddd3;
+  margin: 20px 0;
+}
+
+.idezet {
+  border-left: 4px solid #d08a54;
+  background-color: #ececec;
+  padding: 12px 18px;
+  margin: 16px 0 0;
+  font-style: italic;
+}
+
+.kiemelt {
+  background-color: #eeebe5b4;
+  border-left-color: #d08a54;
+}
+
+.gomb {
+  display: inline-block;
+  background-color: #3f6d99;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+
+.gomb:hover {
+  background-color: #2f5474;
+  color: #ffffff;
 }
